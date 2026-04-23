@@ -1,8 +1,9 @@
 import os
 import pickle
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline as ImbPipeline
 
 MODEL_DIR = os.path.join(os.path.dirname(__file__), '..', 'models')
 
@@ -24,6 +25,14 @@ def train_model(df):
 
     model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
+
+    # 5-fold cross-validation on full training data for robust estimate
+    cv_pipeline = ImbPipeline([
+        ('smote', SMOTE(random_state=42)),
+        ('rf', RandomForestClassifier(n_estimators=100, random_state=42))
+    ])
+    cv_scores = cross_val_score(cv_pipeline, X_train, y_train, cv=5, scoring='roc_auc')
+    print(f"5-Fold CV AUC-ROC: {cv_scores.mean():.3f} (+/- {cv_scores.std():.3f})")
 
     # Print top 5 feature importances after training
     import pandas as pd
