@@ -94,7 +94,8 @@ churn_project/
 │   └── churn_model.pkl             # Saved model (RF) + feature names
 ├── app/
 │   └── app.py                      # Streamlit prediction dashboard
-├── dashboard/                      # Power BI .pbix file
+├── dashboard/
+│   └── dashboard.py                # Interactive Plotly/Dash dashboard
 ├── benchmark.py                    # LR vs RF vs XGBoost comparison script
 ├── main.py                         # Full pipeline runner
 └── requirements.txt
@@ -140,6 +141,15 @@ cd churn_project
 python benchmark.py
 ```
 
+## Launch the Dashboard
+
+```bash
+cd churn_project
+python dashboard/dashboard.py
+```
+
+Dashboard runs at `http://localhost:8050`
+
 ## Launch the Prediction App
 
 ```bash
@@ -160,7 +170,7 @@ App runs at `http://localhost:8501`
 | Imbalance    | imbalanced-learn (SMOTE)          |
 | Explainability | SHAP, feature_importances_      |
 | App          | Streamlit                         |
-| Dashboard    | Power BI (churn_cleaned.csv)      |
+| Dashboard    | Plotly + Dash (churn_cleaned.csv)  |
 | Data         | pandas, openpyxl, numpy           |
 | Version Control | Git + GitHub                   |
 
