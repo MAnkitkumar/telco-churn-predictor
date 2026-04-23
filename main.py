@@ -7,6 +7,9 @@ from src.feature_engineering import encode_data
 from src.model_training import train_model
 from src.evaluation import evaluate
 
+# Run full pipeline: load → clean → encode → train → evaluate
+# For multi-model comparison (LR vs RF vs XGBoost), run: python benchmark.py
+
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'raw', 'Telco_customer_churn.xlsx')
 
 df = load_data(DATA_PATH)
