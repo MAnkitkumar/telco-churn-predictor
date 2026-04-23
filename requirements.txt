@@ -9,3 +9,5 @@ jupyter
 xgboost
 imbalanced-learn
 shap
+plotly
+dash
