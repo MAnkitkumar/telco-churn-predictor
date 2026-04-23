@@ -15,6 +15,9 @@ def clean_data(df):
     Fixes Total Charges which IBM stores as string with whitespace.
     Saves cleaned (pre-encoding) version for Power BI and EDA use.
     """
+    # Validate expected target column exists
+    if 'Churn Value' not in df.columns and 'Churn' not in df.columns:
+        raise ValueError("Dataset missing target column: expected 'Churn Value' or 'Churn'")
     # Drop columns not useful for modeling
     drop_cols = [
         'CustomerID', 'Count', 'Country', 'State', 'City', 'Zip Code',
