@@ -9,7 +9,12 @@ def load_data(path):
 
 
 def clean_data(df):
-    """Drop unnecessary columns, fix types, remove nulls."""
+    """Drop unnecessary columns, fix types, remove nulls.
+    
+    Drops location/ID columns that add noise with no predictive value.
+    Fixes Total Charges which IBM stores as string with whitespace.
+    Saves cleaned (pre-encoding) version for Power BI and EDA use.
+    """
     # Drop columns not useful for modeling
     drop_cols = [
         'CustomerID', 'Count', 'Country', 'State', 'City', 'Zip Code',
