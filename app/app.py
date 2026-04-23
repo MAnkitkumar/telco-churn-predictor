@@ -145,12 +145,14 @@ with st.sidebar:
     st.markdown("### Navigation")
     page = st.radio("Navigation", ["🔮 Predict", "📊 Model Info"])
     st.markdown("---")
-    st.markdown("""
+    n_estimators = model.n_estimators if hasattr(model, 'n_estimators') else 'N/A'
+    n_features = len(features)
+    st.markdown(f"""
     <div style='font-size:12px; color:#8b949e; line-height:1.8'>
-    <b style='color:#58a6ff'>Model</b><br>Random Forest · 100 trees<br><br>
+    <b style='color:#58a6ff'>Model</b><br>Random Forest · {n_estimators} trees<br><br>
     <b style='color:#58a6ff'>Dataset</b><br>IBM Telco · 7,032 customers<br><br>
-    <b style='color:#58a6ff'>Accuracy</b><br>79.5%<br><br>
-    <b style='color:#58a6ff'>Features</b><br>19 customer attributes
+    <b style='color:#58a6ff'>AUC-ROC</b><br>0.824<br><br>
+    <b style='color:#58a6ff'>Features</b><br>{n_features} customer attributes
     </div>
     """, unsafe_allow_html=True)
 
