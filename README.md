@@ -166,6 +166,22 @@ App runs at `http://localhost:8501`
 
 ---
 
+## Common Interview Questions — Answered
+
+**Q: Why Random Forest over Logistic Regression?**
+LR assumes linear relationships between features and log-odds of churn. In reality, churn behaviour is non-linear — e.g. the effect of tenure on churn is different for month-to-month vs two-year contract customers. RF captures these interactions naturally.
+
+**Q: Why not use accuracy as the primary metric?**
+With 26.6% churn rate, a model predicting "no churn" for everyone scores 73.4% accuracy but is completely useless. AUC-ROC measures rank ordering — can the model score churners higher than non-churners — which is the actual business need.
+
+**Q: How did you handle data leakage with SMOTE?**
+SMOTE was applied only after the train/test split, and only to the training set. Applying it before splitting would let synthetic training samples influence test evaluation, inflating metrics artificially.
+
+**Q: What would you do to improve the model further?**
+Hyperparameter tuning with GridSearchCV, trying CatBoost (handles categoricals natively), adding cross-validation, and using SHAP interaction values to find feature pairs that jointly drive churn.
+
+---
+
 ## Key Takeaways for Interviewers
 
 - **Imbalance was handled** — SMOTE applied on training data only, test set kept clean
