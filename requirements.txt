@@ -6,3 +6,6 @@ numpy
 matplotlib
 seaborn
 jupyter
+xgboost
+imbalanced-learn
+shap
