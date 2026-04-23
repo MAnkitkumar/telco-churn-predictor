@@ -25,6 +25,12 @@ def train_model(df):
     model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
 
+    # Print top 5 feature importances after training
+    import pandas as pd
+    fi = pd.Series(model.feature_importances_, index=X.columns)
+    print("\nTop 5 Feature Importances (Gini):")
+    print(fi.nlargest(5).to_string())
+
     os.makedirs(MODEL_DIR, exist_ok=True)
     model_path = os.path.join(MODEL_DIR, 'churn_model.pkl')
     with open(model_path, 'wb') as f:
