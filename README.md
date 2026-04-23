@@ -162,6 +162,7 @@ App runs at `http://localhost:8501`
 | App          | Streamlit                         |
 | Dashboard    | Power BI (churn_cleaned.csv)      |
 | Data         | pandas, openpyxl, numpy           |
+| Version Control | Git + GitHub                   |
 
 ---
 
