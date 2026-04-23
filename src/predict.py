@@ -31,6 +31,13 @@ def predict_customer(customer: dict) -> dict:
     Returns
     -------
     dict with keys: prediction (0/1), churn_probability, risk_level
+
+    Notes
+    -----
+    Risk thresholds (tunable based on business cost of false positives):
+        High   >= 0.60  → immediate retention offer
+        Medium >= 0.35  → monitor + soft outreach
+        Low     < 0.35  → no action needed
     """
     model, features = load_model()
     row = np.array([[customer[f] for f in features]])
